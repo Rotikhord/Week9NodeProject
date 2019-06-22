@@ -1,7 +1,7 @@
 {
-  "name": "teach-09",
+  "name": "Week 9 Assignment ",
   "version": "1.0.0",
-  "description": "Mathematic simple calculation",
+  "description": "Get the the shipping cost ",
   "main": "server.js",
   "dependencies": {
     "ejs": "^2.6.2",
@@ -11,6 +11,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dustin Christensen",
-  "license": "ISC"
+  "author": "Doug Barlow"
 }

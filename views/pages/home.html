@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>Postal Rate Calculator</title>
+  <script>
+    function displayAJAX(){
+        var firstNum = document.getElementsByName("firstNum")[0].value;
+        var operations = document.getElementsByName("operations")[0].value;
+        var secondNum = document.getElementsByName("secondNum")[0].value;
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("displayJSON").innerHTML=request.responseText;
+      }
+    }
+request.open("GET", "/math_service?firstNum=" + firstNum + "&operations=" + operations + "&secondNum=" + secondNum, true);
+request.send();
+    }
+  </script>
+</head>
+<body>
+  <h1>Postal Rate Calculator</h1>
+  <h5>This is an HTML page</h5>
+  <form action="/rate" method="get">
+    <h2>Please enter your package information</h2>
+    <fieldset>
+      <legend>Package Info:</legend>
+
+      <label for="weight">Package Weight</label> <br />
+      <input type="text" name="weight" placeholder="in ounces..."> <br /> <br />
+      <label for="type">Package Type</label> <br />
+      <select name="type">
+        <option value="stamp">Letters (Stamped)</option>
+        <option value="meter">Letters (Metered)</option>
+        <option value="flats">Large Envelopes (Flats)</option>
+        <option value="card">Postcards</option>
+        <option value="retail">Retail Parcels</option>
+      </select> <br /> <br />
+    </fieldset>
+    <br />
+    <div id="formButtons">
+      <input type="submit" value="View Expected Rate">
+      <input type="reset" value="Reset Form. ">
+    </div>
+  </form>
+  <div id='displayJSON'>
+
+  </div>
+</body>
+</html>
