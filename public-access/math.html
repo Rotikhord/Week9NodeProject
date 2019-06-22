@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Math Submission Form</title>
+    <script>
+    function displayAJAX(){
+        var firstNum = document.getElementsByName("firstNum")[0].value;
+        var operations = document.getElementsByName("operations")[0].value;
+        var secondNum = document.getElementsByName("secondNum")[0].value;
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("displayJSON").innerHTML=request.responseText;
+      }
+    }
+request.open("GET", "/math_service?firstNum=" + firstNum + "&operations=" + operations + "&secondNum=" + secondNum, true);
+request.send();
+    }
+    </script>
+</head>
+<body>
+	<h1>Basic Math Submission Form</h1>
+	<form action="/math" method="get">
+        <h2>Enter two numbers and select an operation</h2>
+        
+        First Number <input type="text" name="firstNum">
+        
+        Select an Operation
+		<select name="operations">
+			<option>Add</option>
+			<option>Subtract</option>
+			<option>Multiply</option>
+			<option>Divide</option>
+		</select>
+
+		Second Number <input type="text" name="secondNum"><br><br>
+
+		<input type="submit" value="Click for Results">
+
+	</form>
+    <input type="button" onclick="displayAJAX()" value="Click for JSON">
+    <div id='displayJSON'>
+    
+    </div>
+</body>
+</html>
