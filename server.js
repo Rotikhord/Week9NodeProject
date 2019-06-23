@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.get('/math', returnResults);
 app.get('/rate', returnRate);
 app.get('/math_service', returnJSON);
-
+console.log(__dirname);
 app.get('/', function (req, res) { res.sendFile('views/pages/home.html', { root: __dirname })});
 
 // Have Control listening on PORT()
@@ -73,6 +73,7 @@ function returnRate(request, response) {
     rate = .35;
     message = "A postcard with a weight of " + weight + "oz, should cost $";
   }
+
   if (type == 'stamp' || type == 'meter') {
     if (weight > 3.5) {
       type = 'flats';
@@ -92,6 +93,7 @@ function returnRate(request, response) {
         }
       }
     }
+  }
 
     if (type == 'flats') {
       rate = .5;
@@ -127,7 +129,7 @@ function returnRate(request, response) {
       message += rate.toFixed(2) + " to ship."
     }
     console.log(message);
-  }
+  
   var params = { message: message, type: type, weight: weight };
 
   response.render('pages/rate', params);
